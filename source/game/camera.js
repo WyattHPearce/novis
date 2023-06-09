@@ -1,7 +1,7 @@
 class PlayerCamera {
   constructor(position) {
     this.position = createVector(position.x, position.y);
-    this.zoom = 1;
+    this.zoom = 2.5;
     this.lerpSpeed = 0;
   }
 
@@ -11,7 +11,8 @@ class PlayerCamera {
     translate(-this.position.x, -this.position.y);
   }
 
-  lerp(target, speed) {
+  // Lerps camera position to target position (might be changed later)
+  follow(target, speed) {
     this.lerpSpeed = speed;
 
     const dx = target.x - this.position.x;

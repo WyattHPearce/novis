@@ -46,7 +46,7 @@ function draw() {
 
   player.update();
   player.render();
-  playerCamera.lerp(player.position, 0.2);
+  playerCamera.follow(player.position, 1);
   //playerCamera.position = player.position;
 
   rect(worldMousePosition.x, worldMousePosition.y, 50, 50);
