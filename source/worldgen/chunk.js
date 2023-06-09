@@ -17,9 +17,6 @@ class Chunk {
         // True when the chunk is within render distance of the player
         this.active = false;
 
-        // True when the mouse is within the boundaries of the chunk
-        this.isMouseInside = false;
-
         // Array of tile ID's that represents the chunks data
         this.tiles = [];
 
@@ -32,32 +29,8 @@ class Chunk {
         }
     }
 
-    updateAroundPoint(position){
-      // Calculates the distance from the player to the center of the chunk
-      let distanceOfChunk = dist(position.x, position.y, this.chunkCenterX, this.chunkCenterY);
-      // Render chunks if they are within render distance
-      if (distanceOfChunk < worldManager.renderDistance) {
-        this.active = true;
-      } else {
-        this.active = false;
-      }
-
-      if (isPointInsideRectangle(worldMousePosition.x, worldMousePosition.y, this.chunkCenterX, this.chunkCenterY, this.widthInTiles*worldManager.tileSize, this.heightInTiles*worldManager.tileSize)) {
-        this.isMouseInside = true;
-      } else {
-        this.isMouseInside = false;
-      }
-    }
-
     render(){
-        strokeWeight(2);
-        if (this.isMouseInside) {
-          strokeWeight(3);
-          stroke(255,0,0);
-        } else {
-          strokeWeight(1);
-          stroke(0,0,0);
-        }
+        strokeWeight(3);
         rect(this.chunkCenterX, this.chunkCenterY, this.widthInTiles*worldManager.tileSize, this.widthInTiles*worldManager.tileSize);
         stroke(0,0,0);
         strokeWeight(1);

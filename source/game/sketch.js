@@ -1,6 +1,7 @@
 // Declare game managers
 let worldManager;
 let graphicsManager;
+let buildManager;
 
 // Declare primary game objects
 let player;
@@ -24,6 +25,7 @@ function setup() {
 
   // Initializing game managers
   worldManager = new WorldManager();
+  buildManager = new BuildManager();
 
   // Game manager setup methods
   worldManager.setupChunks();
@@ -42,7 +44,8 @@ function draw() {
   // Update mouse position other control variables
   controlsUpdate();
 
-  worldManager.processChunks();
+  worldManager.renderChunks();
+  buildManager.update();
 
   player.update();
   player.render();
