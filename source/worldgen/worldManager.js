@@ -2,6 +2,10 @@ class WorldManager {
   constructor() {
     // Array that holds all chunks
     this.world = [];
+    // Array that hold all rendered chunks
+    this.activeChunks = [];
+
+
     // Radius around the player that chunks render (This is in canvas pixel units)
     this.renderDistance = 400;
     // Size of each tile in pixels
@@ -29,6 +33,9 @@ class WorldManager {
   }
 
   renderChunks() {
+    // Clear the activeWorld array before rendering new chunks
+    this.activeChunks = [];
+
     // Loop through all chunks in the world array
     for (let x = 0; x < this.horizontalChunks; x++) {
       for (let y = 0; y < this.verticalChunks; y++) {
@@ -40,6 +47,9 @@ class WorldManager {
         if (distanceOfChunk < this.renderDistance) {
           chunk.active = true;
           chunk.render(player.position);
+
+          // Add the rendered chunk to the activeWorld array
+          this.activeChunks.push(chunk);
         } else {
           chunk.active = false;
         }
@@ -47,14 +57,3 @@ class WorldManager {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

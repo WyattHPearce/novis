@@ -56,6 +56,14 @@ function keyReleased() {
     }
 }
 
+function mousePressed() {
+    if (mouseButton == LEFT) {
+        buildManager.break();
+      } else if (mouseButton == RIGHT) {
+        buildManager.place();
+      }
+}
+
 function mouseWheel(event) {
     // Change the offset based on the mouse wheel delta
     playerCamera.zoom -= event.delta*0.0005;

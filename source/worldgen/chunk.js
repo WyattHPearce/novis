@@ -17,6 +17,8 @@ class Chunk {
         // True when the chunk is within render distance of the player
         this.active = false;
 
+        this.isMouseInside = false;
+
         // Array of tile ID's that represents the chunks data
         this.tiles = [];
 
@@ -30,6 +32,12 @@ class Chunk {
     }
 
     render(){
+        // Debug outline
+        if (this.isMouseInside) {
+          stroke(255,0,0);
+        } else {
+          stroke(0, 0, 0);
+        }
         strokeWeight(3);
         rect(this.chunkCenterX, this.chunkCenterY, this.widthInTiles*worldManager.tileSize, this.widthInTiles*worldManager.tileSize);
         stroke(0,0,0);
@@ -41,10 +49,13 @@ class Chunk {
 
         for (let x = 0; x < this.widthInTiles; x++) {
             for (let y = 0; y < this.heightInTiles; y++) {
+              if (this.tiles[x][y] == 0){
                 rect(x*worldManager.tileSize, y*worldManager.tileSize, worldManager.tileSize, worldManager.tileSize);
+              } else {
+                ellipse(x*worldManager.tileSize, y*worldManager.tileSize, worldManager.tileSize, worldManager.tileSize);
+              }
             }
         }
-
         pop();
     }
   }

@@ -43,16 +43,16 @@ function draw() {
 
   // Update mouse position other control variables
   controlsUpdate();
-
+  
   worldManager.renderChunks();
-  buildManager.update();
+  
 
   player.update();
   player.render();
   playerCamera.follow(player.position, 1);
   //playerCamera.position = player.position;
-
-  rect(worldMousePosition.x, worldMousePosition.y, 50, 50);
+  
+  rect(worldMousePosition.x, worldMousePosition.y, 15, 15);
 
   // Reset camera (all) transformations
   resetMatrix();
